@@ -1,9 +1,8 @@
 #v means the below statement 
 
 FROM python:3.9-alpine3.13
-LABEL maintainer="Anabot12"
-
-ENV PYTHONBUFFERED 1
+LABEL maintainer="Anabot12"	
+ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /tmp/requirements.txt 
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
@@ -16,8 +15,8 @@ EXPOSE 8000
 ARG DEV=false 
 RUN python -m venv /py && \    
     /py/bin/pip install --upgrade pip && \
-    /py/bin/pip install -r/tmp/requirements.txt &&\
-    if [$DEV ='true' ] ; \
+    /py/bin/pip install -r /tmp/requirements.txt &&\
+    if [ $DEV = "true" ] ; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
     #we dont want any extra dependencies so we delete the tmp files (v)
@@ -25,7 +24,7 @@ RUN python -m venv /py && \
     adduser \
         --disabled-password \
         --no-create-home \
-        django user
+        django-user
 
 ENV PATH="/py/bin:$PATH"
 
