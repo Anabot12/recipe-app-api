@@ -1,6 +1,5 @@
-#v means the below statement 
-
 FROM python:3.9-alpine3.13
+
 LABEL maintainer="Anabot12"	
 ENV PYTHONUNBUFFERED 1
 
